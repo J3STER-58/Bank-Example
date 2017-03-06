@@ -11,5 +11,6 @@ public:
 	~Bank();
 
 	std::string GetName();	
+	bool OpenAccount(Account account, int startingPennies);
 };
 
