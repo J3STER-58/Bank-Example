@@ -1,8 +1,16 @@
 #pragma once
+#include "Customer.h"
 class Account
 {
+	int _accountNumber;
+	int _balance = 0;
+	Customer _accountOwner;
 public:
-	Account();
+	Account(int accountNumber, Customer accountOwner);
 	~Account();
+
+	bool Deposit(int pennies);
+	bool Withdraw(int pennies);
+	int GetBalanceInPennies();
 };
 
