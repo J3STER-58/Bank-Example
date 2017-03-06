@@ -7,3 +7,8 @@ Customer::Customer(std::string firstName, std::string lastName) : _firstName(fir
 Customer::~Customer()
 {
 }
+
+std::string Customer::GetName()
+{
+	return _lastName + ", " + _firstName;
+}

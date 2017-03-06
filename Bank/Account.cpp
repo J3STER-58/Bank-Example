@@ -8,6 +8,11 @@ Account::~Account()
 {
 }
 
+std::string Account::GetAccountInfo()
+{
+	return _accountOwner.GetName();
+}
+
 bool Account::Deposit(int pennies)
 {	
 	if (pennies > 0) 

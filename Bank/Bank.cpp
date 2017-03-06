@@ -13,6 +13,11 @@ std::string Bank::GetName()
 	return _name;
 }
 
+std::vector<Account> Bank::GetAccounts()
+{
+	return _accounts;
+}
+
 bool Bank::OpenAccount(Account account, int startingPennies)
 {
 	account.Deposit(startingPennies);

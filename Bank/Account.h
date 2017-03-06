@@ -9,6 +9,7 @@ public:
 	Account(int accountNumber, Customer accountOwner);
 	~Account();
 
+	std::string GetAccountInfo();
 	bool Deposit(int pennies);
 	bool Withdraw(int pennies);
 	int GetBalanceInPennies();

@@ -10,7 +10,8 @@ public:
 	Bank(std::string name);
 	~Bank();
 
-	std::string GetName();	
+	std::string GetName();
+	std::vector<Account> GetAccounts();
 	bool OpenAccount(Account account, int startingPennies);
 };
 

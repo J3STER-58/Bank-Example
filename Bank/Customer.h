@@ -10,5 +10,7 @@ private:
 public:
 	Customer(std::string firstName, std::string lastName);
 	~Customer();
+
+	std::string GetName();
 };
 
