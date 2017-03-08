@@ -2,14 +2,16 @@
 #include "Bank.h"
 using namespace std;
 
-void CreateAccountSubsystem(Bank &bank);
-void ViewAccountsSubsystem(Bank  &bank);
-void DeleteAccountSubsystem(Bank &bank);
+void CreateAccountSubsystem();
+void ViewAccountsSubsystem();
+void DeleteAccountSubsystem();
+void ShowTransactionLog();
+void Transact();
 
+Bank bank = Bank("Awesome Bank");
 int main()
 {
 	//Create the bank
-	auto bank = Bank("Awesome Bank");
 	auto choice = 0;
 	do
 	{
@@ -18,23 +20,80 @@ int main()
 		cout << "1) Create Account" << endl;
 		cout << "2) View Accounts" << endl;
 		cout << "3) Delete Account" << endl;
-		cout << "4) Exit" << endl;
+		cout << "4) Transact" << endl;
+		cout << "5) Show Transaction Log" << endl;
+		cout << "6) Exit" << endl;
 		cin >> choice;
 
 		switch (choice)
 		{
-			case 1: CreateAccountSubsystem(bank); break;
-			case 2: ViewAccountsSubsystem(bank); break;
-			case 3: DeleteAccountSubsystem(bank); break;
+			case 1: CreateAccountSubsystem(); break;
+			case 2: ViewAccountsSubsystem(); break;
+			case 3: DeleteAccountSubsystem(); break;
+			case 4: Transact(); break;
+			case 5: ShowTransactionLog(); break;
 			default: break;
 		}
-	} while (choice != 4);
+	} while (choice != 6);
 
 	system("pause");
 	return 0;
 }
 
-void CreateAccountSubsystem(Bank &bank)
+void Transact() {
+	system("cls");
+	cout << "Which customer?" << endl;
+	int i = 0;
+	for (auto account : bank.GetAccounts()) {
+		i++;
+		cout << i << ") " << account.GetAccountInfo() << endl;
+	}
+	int choice = 0;
+	cin >> choice;
+
+	auto account = bank.GetAccounts()[choice - 1];
+	system("cls");
+
+	cout << "1) Deposit" << endl;
+	cout << "2) Withdraw" << endl;
+	int typeChoice;
+	cin >> typeChoice;
+
+	cout << "How Many Pennies? ";
+	int pennies;
+	cin >> pennies;
+
+	if (typeChoice == 1) {
+		account.Deposit(pennies);
+	}
+	else if (typeChoice == 2) {
+		account.Withdraw(pennies);
+	}
+	else {
+		//Bad input
+	}
+	
+	system("pause");
+}
+
+void ShowTransactionLog() {
+	system("cls");
+	cout << "Which customer?" << endl;
+	int i = 0;
+	for (auto account : bank.GetAccounts()) {
+		i++;
+		cout << i << ") " << account.GetAccountInfo() << endl;
+	}
+	int choice = 0;
+	cin >> choice;
+
+	auto account = bank.GetAccounts()[choice - 1];
+	system("cls");
+	cout << account.ShowTransactionLog() << endl;
+	system("pause");
+}
+
+void CreateAccountSubsystem()
 {
 	system("cls");
 	string firstName, lastName;
@@ -52,7 +111,7 @@ void CreateAccountSubsystem(Bank &bank)
 	bank.OpenAccount(account, 0);
 }
 
-void ViewAccountsSubsystem(Bank &bank)
+void ViewAccountsSubsystem()
 {
 	system("cls");
 	auto accounts = bank.GetAccounts();
@@ -63,7 +122,7 @@ void ViewAccountsSubsystem(Bank &bank)
 	system("pause");
 }
 
-void DeleteAccountSubsystem(Bank &bank)
+void DeleteAccountSubsystem()
 {
 	return;
 }
